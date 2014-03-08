@@ -24,6 +24,7 @@ gem 'jbuilder', '1.0.2'
 gem 'browser'
 gem 'omniauth'
 gem 'omniauth-facebook', '1.4.0'
+gem 'pusher'
 
 group :doc do
   gem 'sdoc', '0.3.20', require: false

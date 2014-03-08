@@ -4,7 +4,25 @@
   <title>Emeralds</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "http://js.pusher.com/2.1/pusher.min.js" %>
   <%= csrf_meta_tags %>
+
+    <script type="text/javascript">
+    // Enable pusher logging - don't include this in production
+    Pusher.log = function(message) {
+      if (window.console && window.console.log) {
+        window.console.log(message);
+      }
+    };
+ 	Pusher.host = 'ws-eu.pusher.com';
+ 	Pusher.sockjs_host = 'sockjs-eu.pusher.com';    
+
+ 	var pusher = new Pusher('<%= Pusher.key %>'); // uses your APP KEY
+ 	var channel = pusher.subscribe('test_channel');
+ 	channel.bind('greet', function(data) {
+   	alert(data.greeting);
+ });
+  </script>
 </head>
 <body>
 

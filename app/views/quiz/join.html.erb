@@ -2,3 +2,8 @@
 <p>Find me in app/views/quiz/join.html.erb</p>
 <%= @message %>
 
+<%
+Pusher['test_channel'].trigger('greet', {
+  :greeting => "Hello there!"
+})
+%>

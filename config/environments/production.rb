@@ -1,6 +1,10 @@
 Emeralds::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  require 'pusher'
 
+  Pusher.app_id = '68103'
+  Pusher.key    = 'e4b834d5db454fadd385'
+  Pusher.secret = 'e24bdb16627f6611351c'
   # Code is not reloaded between requests.
   config.cache_classes = true
 
