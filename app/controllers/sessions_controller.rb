@@ -3,6 +3,7 @@ class SessionsController < ApplicationController
   def create
     player = Player.from_omniauth(env["omniauth.auth"])
     session[:player_id] = player.id
+    @playerid = player.id
     redirect_to root_url
   end
 

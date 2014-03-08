@@ -1,9 +1,9 @@
 class QuizController < ApplicationController
   def join
   	@message = "Hello, how are you?"
-	Pusher['test_channel'].trigger('greet', {
-  		:greeting => "Hello there!"
-	})
+	# Pusher.app_id = '68083'
+	# Pusher.key = 'af206ffe9c7f4e25ed4b'
+	# Pusher.secret = '04201eebd4dfd5a89e66'    	
   end
 
   def question

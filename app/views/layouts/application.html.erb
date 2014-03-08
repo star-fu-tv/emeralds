@@ -4,8 +4,15 @@
   <title>Emeralds</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" %>
   <%= javascript_include_tag "http://js.pusher.com/2.1/pusher.min.js" %>
   <%= csrf_meta_tags %>
+</head>
+<body>
+
+<!-- IF mobile versions -->
+<div id="player-widget">
+  <% if current_player %>
 
     <script type="text/javascript">
     // Enable pusher logging - don't include this in production
@@ -14,22 +21,38 @@
         window.console.log(message);
       }
     };
- 	Pusher.host = 'ws-eu.pusher.com';
- 	Pusher.sockjs_host = 'sockjs-eu.pusher.com';    
 
- 	var pusher = new Pusher('<%= Pusher.key %>'); // uses your APP KEY
- 	var channel = pusher.subscribe('test_channel');
- 	channel.bind('greet', function(data) {
-   	alert(data.greeting);
- });
+    $(function() {
+	 	// Local
+    	//var pusher = new Pusher('af206ffe9c7f4e25ed4b');
+    	// Deployed
+    	var pusher = new Pusher('e4b834d5db454fadd385');
+
+	 	// var pusher = new Pusher('af206ffe9c7f4e25ed4b', { authTransport: 'jsonp' }); // uses your APP KEY
+	 	
+	 	var channel = pusher.subscribe('test_channel');
+	    channel.bind('my_event', function(data) {
+	      alert(data.message);
+	    });	 	
+
+ 	    // Some useful debug msgs
+	    pusher.connection.bind('connecting', function() {
+	      $('div#status').text('Connecting to Pusher...');
+	    });
+	    pusher.connection.bind('connected', function() {
+	      $('div#status').text('Connected to Pusher!');
+	    });
+	    pusher.connection.bind('failed', function() {
+	      $('div#status').text('Connection to Pusher failed :(');
+	    });
+	    channel.bind('subscription_error', function(status) {
+	      $('div#status').text('Pusher subscription_error');
+	    });
+    });
   </script>
-</head>
-<body>
 
-<!-- IF mobile versions -->
-<div id="player-widget">
-  <% if current_player %>
-    Welcome <strong><%= current_player.name %></strong>!
+  	<div id="status"></div>
+    Welcome <strong><%= current_player.name %></strong>! <%= current_player.id %>
     <%= link_to "Sign out", signout_path, id: "sign_out" %>
   <% else %>
     <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
@@ -37,6 +60,7 @@
   <% end %>
 </div>
 <!-- END IF mobile version -->
+
 
 <%= yield %>
 
