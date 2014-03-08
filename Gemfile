@@ -25,6 +25,8 @@ gem 'browser'
 gem 'omniauth'
 gem 'omniauth-facebook', '1.4.0'
 gem 'pusher'
+gem 'useragent'
+
 
 group :doc do
   gem 'sdoc', '0.3.20', require: false

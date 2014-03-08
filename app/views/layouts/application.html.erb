@@ -10,6 +10,49 @@
 </head>
 <body>
 
+<!-- IF DESKTOP VERSION / QUIZMASTER ARISE -->
+  <% # get user browser
+  browser = request.env['HTTP_USER_AGENT']  
+  user_agent = UserAgent.parse(browser) 
+  %>
+  <% if user_agent.browser == 'Chrome' %>
+    <script type="text/javascript">
+    // Enable pusher logging - don't include this in production
+    Pusher.log = function(message) {
+      if (window.console && window.console.log) {
+        window.console.log(message);
+      }
+    };
+
+    $(function() {
+	 	// Local
+    	//var pusher = new Pusher('af206ffe9c7f4e25ed4b');
+    	// Deployed
+    	var pusher = new Pusher('e4b834d5db454fadd385');
+	 	
+	 	var channel = pusher.subscribe('presence-test_channel');
+	    channel.bind('my_event', function(data) {
+	      alert(data.message);
+	    });	 	
+
+ 	    // Some useful debug msgs
+	    pusher.connection.bind('connecting', function() {
+	      $('div#status').text('Connecting to Pusher...');
+	    });
+	    pusher.connection.bind('connected', function() {
+	      $('div#status').text('Connected to Pusher!');
+	    });
+	    pusher.connection.bind('failed', function() {
+	      $('div#status').text('Connection to Pusher failed :(');
+	    });
+	    channel.bind('subscription_error', function(status) {
+	      $('div#status').text('Pusher subscription_error');
+	    });
+    });
+  </script>
+<!-- END DESKTOP VERSION -->
+   <% else %>
+<!-- IF MOBILE / TEAM PLAY -->
 <!-- IF mobile versions -->
 <div id="player-widget">
   <% if current_player %>
@@ -27,10 +70,8 @@
     	//var pusher = new Pusher('af206ffe9c7f4e25ed4b');
     	// Deployed
     	var pusher = new Pusher('e4b834d5db454fadd385');
-
-	 	// var pusher = new Pusher('af206ffe9c7f4e25ed4b', { authTransport: 'jsonp' }); // uses your APP KEY
 	 	
-	 	var channel = pusher.subscribe('test_channel');
+	 	var channel = pusher.subscribe('presence-test_channel');
 	    channel.bind('my_event', function(data) {
 	      alert(data.message);
 	    });	 	
@@ -52,15 +93,19 @@
   </script>
 
   	<div id="status"></div>
-    Welcome <strong><%= current_player.name %></strong>! <%= current_player.id %>
+    Welcome <strong><%= current_player.name %></strong>! <%= current_player.id %><br>
+    <%= link_to image_tag current_player.image %>
     <%= link_to "Sign out", signout_path, id: "sign_out" %>
   <% else %>
     <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
     <a href="auth/facebook">SIGN IN PROPERLY</a>
   <% end %>
+  
 </div>
 <!-- END IF mobile version -->
 
+<!-- END MOBILE / TEAM PLAY -->
+  <% end %>
 
 <%= yield %>
 

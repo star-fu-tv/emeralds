@@ -4,9 +4,12 @@ class PusherController < ApplicationController
   def auth
     if current_player
       response = Pusher[params[:channel_name]].authenticate(params[:socket_id], {
-        :player_id => current_player.id, # => required
+        :user_id => current_player.id, # => required
+        #:player_id => current_player.id
         :player_info => { # => optional - for example
-          :name => current_player.name
+          :name => current_player.name,
+          :player_id => current_player.id
+
           #:email => current_user.email
         }
       })
