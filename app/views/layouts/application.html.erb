@@ -8,6 +8,18 @@
 </head>
 <body>
 
+<!-- IF mobile versions -->
+<div id="player-widget">
+  <% if current_player %>
+    Welcome <strong><%= current_player.name %></strong>!
+    <%= link_to "Sign out", signout_path, id: "sign_out" %>
+  <% else %>
+    <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
+    <a href="auth/facebook">SIGN IN PROPERLY</a>
+  <% end %>
+</div>
+<!-- END IF mobile version -->
+
 <%= yield %>
 
 </body>
