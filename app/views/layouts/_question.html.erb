@@ -1,6 +1,6 @@
 <div id="player-widget">
   <% if current_player %>
-
+My score: <%= current_player.points %>
   	<div id="status"></div>
     Welcome <strong><%= current_player.name %></strong>! <%= current_player.id %><br>
     <%= link_to image_tag current_player.image %>
@@ -14,7 +14,7 @@
 
 
 <div class="question">
-My socre<%= current_player.score %>
+
 
 <% q1 = @questions.find(params[:id]) %><br>
 
@@ -30,13 +30,10 @@ My socre<%= current_player.score %>
 	
 	if q1_array[i] == q1.correct_a then %>
 
-	<%= form_tag(next_q_link, :method=>"post") do %>
+	<%= form_tag("/quiz/correct/" + params[:id], :method=>"put") do %>
+
+	  <input id="question_number" name="q_number" type="checkbox" value="<%= params[:id] %>" />
 	  <%= submit_tag(q1_array[i], :class=>"btn", :id=>"correct-answer") %>
-	  <% if current_player then
-      new_score = Integer(current_player.score)
-      new_score += 1
-      current_player.score = new_score 
-    end %>
 	<% end %>
 
 	<% else %>

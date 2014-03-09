@@ -26,6 +26,7 @@ gem 'omniauth'
 gem 'omniauth-facebook', '1.4.0'
 gem 'pusher'
 gem 'useragent'
+#gem 'protected_attributes'
 
 
 group :doc do

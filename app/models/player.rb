@@ -1,5 +1,5 @@
 class Player < ActiveRecord::Base
-
+#attr_accessible :points
   def self.from_omniauth(auth)
   	#facebook integration
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |player|
@@ -9,9 +9,14 @@ class Player < ActiveRecord::Base
       player.name = auth.info.name
       player.oauth_token = auth.credentials.token
       player.oauth_expires_at = Time.at(auth.credentials.expires_at)
-      player.score = 0
+      player.points = 0
       player.save!
     end
   end
+
+   private
+    def player_params
+      params.require(:player).permit(:points)
+    end
 
 end

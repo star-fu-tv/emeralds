@@ -16,12 +16,14 @@ class QuizController < ApplicationController
   end
 
   def correct
-    if current_player then
-      new_score = Integer(current_player.score)
-      new_score += 1
-      current_player.score = new_score
+
+    if current_player && Integer(params[:id]) < 3 then
+      new_score = current_player.points + 1
+      current_player.update_attribute(:points, new_score)
+      next_question_id = Integer(params[:id]) + 1
+      redirect_to "/quiz/question/" + next_question_id.to_s
+    else redirect_to "/quiz/end"
     end
-    redirect_to "quiz/question" + params[:id]
   end
 
   def start
@@ -33,14 +35,23 @@ class QuizController < ApplicationController
   end
 
   def waiting
-
+    if current_player then
+      current_player.update_attribute(:points, "0")
+    end
 
   end
+
+  
+
 
   def question
     #   Pusher['question_channel'].trigger('next_question', {
     #   message: 'next question'
     # }) 
+  end
+
+  def end 
+
   end
 
   def winner

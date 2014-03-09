@@ -8,6 +8,8 @@ Emeralds::Application.routes.draw do
   match 'quizmaster/question/:id', to: 'quizmaster#question', via: [:get, :post]
   match 'quiz/question/:id', to: 'quiz#question', via: [:get, :post]
   match 'quiz/waiting', to: 'quiz#waiting', via: [:get, :post]
+  match 'quiz/end', to: 'quiz#end', via: [:get, :post]
+  match 'quiz/correct/:id', to: 'quiz#correct', via: [:put]
   match 'quiz/question', to: 'quiz#question', via: [:get, :post]
   match 'quizmaster/start', to: 'quizmaster#start', via: [:get, :post]
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
