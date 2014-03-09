@@ -1,9 +1,24 @@
 class QuizController < ApplicationController
+  
+  def index
+    # CHECK IF DESKTOP OR MOBILE
+      browser = request.env['HTTP_USER_AGENT']  
+      user_agent = UserAgent.parse(browser) 
+      if user_agent.browser == 'Chrome' then
+         redirect_to :controller => '/quizmaster', :action => 'start'
+      end   
+  end
+
+  def start
+
+  end
+
   def join
-  	@message = "Hello, how are you?"
-	# Pusher.app_id = '68083'
-	# Pusher.key = 'af206ffe9c7f4e25ed4b'
-	# Pusher.secret = '04201eebd4dfd5a89e66'    	
+  	
+  end
+
+  def waiting
+
   end
 
   def question

@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140308152343) do
+ActiveRecord::Schema.define(version: 20140308231734) do
+
+  create_table "games", force: true do |t|
+    t.integer  "number_of_players"
+    t.integer  "current_question"
+    t.integer  "countdown"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "players", force: true do |t|
     t.string   "provider"
@@ -23,6 +31,16 @@ ActiveRecord::Schema.define(version: 20140308152343) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image"
+  end
+
+  create_table "questions", force: true do |t|
+    t.text     "question_text"
+    t.text     "correct_a"
+    t.text     "incorrect_a"
+    t.text     "incorrect_b"
+    t.text     "incorrect_c"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

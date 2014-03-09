@@ -1,0 +1,17 @@
+<h1>Quizmaster#start</h1>
+<p>Find me in app/views/quizmaster/start.html.erb</p>
+
+<%= render 'layouts/playersonline' %>
+
+<%= form_tag("/quizmaster/question", :method=>"post") do %>
+  <%= submit_tag("Start Quiz", :class=>"btn", :id=>"start-game") %>
+<% end %>
+
+<script type="text/javascript">
+		var playersOnline = <%= Player.all.size-1%>
+		console.log(playersOnline);
+		if(playersOnline < 1) {
+			$('#start-game').hide();
+			console.log("MORE PLAY")
+		}
+</script>

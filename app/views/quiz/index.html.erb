@@ -1,0 +1,30 @@
+<h1>Quizzard</h1>
+<p>Find me in app/views/quiz/index.html.erb</p>
+
+
+<div id="player-widget">
+  <% if current_player %>
+
+  	<div id="status"></div>
+    Welcome <strong><%= current_player.name %></strong>! <%= current_player.id %><br>
+    <%= link_to image_tag current_player.image %>
+    <%= link_to "Sign out", signout_path, id: "sign_out" %>
+  <% else %>
+    <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
+    <a href="auth/facebook">SIGN IN PROPERLY</a>
+  <% end %>
+  
+</div>
+
+
+
+<%= Player.all.size %>
+<br> Player ID
+<%= session[:player_id] %>
+<%
+    # Pusher['presence_test_channel'].trigger('my_event', {
+    #   message: 'hello world welcome to my quiz!'
+    # })
+%>
+
+<%= render 'layouts/playersonline.html' %>

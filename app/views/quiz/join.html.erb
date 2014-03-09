@@ -1,18 +1,13 @@
-<h1>Splash</h1>
+<h1>Quizzard</h1>
 <p>Find me in app/views/quiz/join.html.erb</p>
-<%= @message %>
 
+<%= Player.all.size %>
+<br> Player ID
+<%= session[:player_id] %>
 <%
-    Pusher['presence-test_channel'].trigger('my_event', {
-      message: 'hello world welcome to my quiz!'
-    })
-#Pusher.url = "http://af206ffe9c7f4e25ed4b:04201eebd4dfd5a89e66@api.pusherapp.com/apps/68083"
-
-
-# Pusher['test_channel'].trigger('greet', {
-#   :greeting => "Hello there!"
-# })
-
-#Pusher['presence-1'].trigger('greet', {:greeting => "Hello there! You've joined my quiz! :)"})
+    # Pusher['presence_test_channel'].trigger('my_event', {
+    #   message: 'hello world welcome to my quiz!'
+    # })
 %>
 
+<%= render 'layouts/playersonline.html' %>
