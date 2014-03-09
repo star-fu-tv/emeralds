@@ -5,7 +5,10 @@ Emeralds::Application.routes.draw do
   root :to => "quiz#index"
   post 'pusher/auth'
   post 'quiz/join'
-
+  match 'quizmaster/question/:id', to: 'quizmaster#question', via: [:get, :post]
+  match 'quiz/question/:id', to: 'quiz#question', via: [:get, :post]
+  match 'quiz/waiting', to: 'quiz#waiting', via: [:get, :post]
+  match 'quiz/question', to: 'quiz#question', via: [:get, :post]
   match 'quizmaster/start', to: 'quizmaster#start', via: [:get, :post]
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
   match 'auth/failure', to: redirect('/'), via: [:get, :post]

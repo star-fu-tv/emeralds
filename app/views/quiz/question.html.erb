@@ -1,12 +1,5 @@
 <h1>Quiz#question</h1>
 <p>Find me in app/views/quiz/question.html.erb</p>
+<% @questions = Question.all %>
+  <%= render 'layouts/question' %>
 
-<%= Question.first.question_text %>
-<br>
-<%= Question.first.correct_a %>
-<br>
-<%= Question.first.incorrect_a %>
-<br>
-<%= Question.first.incorrect_b %>
-<br>
-<%= Question.first.incorrect_c %>

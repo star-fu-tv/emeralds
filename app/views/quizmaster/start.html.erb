@@ -2,10 +2,12 @@
 <p>Find me in app/views/quizmaster/start.html.erb</p>
 
 <%= render 'layouts/playersonline' %>
-
-<%= form_tag("/quizmaster/question", :method=>"post") do %>
+<%= @current_question %>
+<%= form_tag("/quizmaster/question/1/", :method=>"post") do %>
   <%= submit_tag("Start Quiz", :class=>"btn", :id=>"start-game") %>
 <% end %>
+
+
 
 <script type="text/javascript">
 		var playersOnline = <%= Player.all.size-1%>

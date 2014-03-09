@@ -1,1 +1,22 @@
 <h1>Quizzard - Waiting for Players</h1>
+<%= render 'layouts/playersonline' %>
+
+* PUT LISTENER HERE * JAVASCRIPT PUSHER *
+<script type="text/JAVASCRIPT">
+	    var pusher = new Pusher('e4b834d5db454fadd385');
+	 	
+	 	var channel2 = pusher.subscribe('question_channel');
+	    channel2.bind('next_question', function(data) {
+	  		console.log("NEXT QUESTION" + data.message)
+	  		$('#go-to-q1-form').submit()
+      })   
+	     channel2.bind('pusher:subscription_succeeded', function() {
+	     	console.log("HOW MANY PUSooooHERS")
+	     	
+		})
+
+</script>
+
+<%= form_tag("/quiz/question/1", :method=>"post", :id=>"go-to-q1-form") do %>
+  <%= submit_tag("First Question", :class=>"transparent-next", :id=>"go-to-q1") %>
+  <% end %>

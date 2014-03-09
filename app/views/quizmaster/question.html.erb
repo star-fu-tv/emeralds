@@ -1,13 +1,6 @@
 <h1>Quizmaster#question</h1>
 <p>Find me in app/views/quizmaster/question.html.erb</p>
+<% @questions = Question.all %>
 
-
-<%= Question.first.question_text %>
-<br>
-<%= Question.first.correct_a %>
-<br>
-<%= Question.first.incorrect_a %>
-<br>
-<%= Question.first.incorrect_b %>
-<br>
-<%= Question.first.incorrect_c %>
+  <%= render 'layouts/question' %><br>and..<%= params[:id]%>
+  

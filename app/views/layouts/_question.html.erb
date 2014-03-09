@@ -1,0 +1,56 @@
+<div id="player-widget">
+  <% if current_player %>
+
+  	<div id="status"></div>
+    Welcome <strong><%= current_player.name %></strong>! <%= current_player.id %><br>
+    <%= link_to image_tag current_player.image %>
+    <%= link_to "Sign out", signout_path, id: "sign_out" %>
+  <% else %>
+    <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
+    <a href="auth/facebook">SIGN IN PROPERLY</a>
+  <% end %>
+  
+</div>
+
+
+<div class="question">
+My socre<%= current_player.score %>
+
+<% q1 = @questions.find(params[:id]) %><br>
+
+<% q1_array = [q1.correct_a, q1.incorrect_a, q1.incorrect_b, q1.incorrect_c] %>
+
+<% q1_array.shuffle! %>
+
+<% 4.times do |i| %>
+
+	<% 
+		next_q = Integer(params[:id]) + 1
+		next_q_link = "/quiz/question/" + next_q.to_s 
+	
+	if q1_array[i] == q1.correct_a then %>
+
+	<%= form_tag(next_q_link, :method=>"post") do %>
+	  <%= submit_tag(q1_array[i], :class=>"btn", :id=>"correct-answer") %>
+	  <% if current_player then
+      new_score = Integer(current_player.score)
+      new_score += 1
+      current_player.score = new_score 
+    end %>
+	<% end %>
+
+	<% else %>
+
+	<%= form_tag(next_q_link, :method=>"post") do %>
+	  <%= submit_tag(q1_array[i], :class=>"btn", :id=>"incorrect-answer") %>
+	<% end %>
+
+	<% end %>
+
+<% i+= 1 %>
+<% end %>
+
+
+
+
+</div>
