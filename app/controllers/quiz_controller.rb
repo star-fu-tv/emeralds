@@ -9,7 +9,6 @@ class QuizController < ApplicationController
       if user_agent.browser == 'Chrome' then
          redirect_to :controller => '/quizmaster', :action => 'start'
       else  
-      if current_player then
         redirect_to :controller => '/quiz', :action => 'waiting'
       end
 
