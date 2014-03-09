@@ -3,7 +3,19 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 @import "bootstrap";
+@import "compass";
 
 h1 {
 	text-align:center;
+}
+
+h2#quizmaster-waiting{
+	display: none;
+}
+
+body {
+	@include background-image(linear-gradient(top, #f0f9ff 0%,#ccffcc 67%,#a1dbff 100%));
+	@include background-image(linear-gradient(top, #f0f9ff 0%,#f4d1ff 14%,#a1f9fc 21%,#f4d1ff 30%,#f4d1ff 30%,#a1f9fc 41%,#ffec63 59%,#825ee5 59%,#825ee5 59%,#825ee5 63%,#1b4284 100%));
+	background: url(gray_jean.png);
+	text-align: center;
 }

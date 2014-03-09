@@ -16,12 +16,15 @@ class QuizController < ApplicationController
 
   def correct
 
-    if current_player && Integer(params[:id]) < 3 then
+    if current_player && Integer(params[:id]) < 4 then
       new_score = current_player.points + 1
       current_player.update_attribute(:points, new_score)
       next_question_id = Integer(params[:id]) + 1
       redirect_to "/quiz/question/" + next_question_id.to_s
-    else redirect_to "/quiz/end"
+    else 
+      new_score = current_player.points + 1
+      current_player.update_attribute(:points, new_score)
+      redirect_to "/quiz/end"
     end
   end
 
@@ -44,9 +47,10 @@ class QuizController < ApplicationController
 
 
   def question
-    #   Pusher['question_channel'].trigger('next_question', {
-    #   message: 'next question'
-    # }) 
+       Pusher['answered'].trigger('answered_question', {
+       question: params[:id],
+       user: current_player.uid
+     }) 
   end
 
   def end 

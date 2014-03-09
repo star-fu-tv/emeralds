@@ -1,6 +1,9 @@
 <h1>Quizmaster#question</h1>
-<p>Find me in app/views/quizmaster/question.html.erb</p>
+
 <% @questions = Question.all %>
 
   <%= render 'layouts/question' %><br>and..<%= params[:id]%>
   
+  <%= render 'layouts/playersonline' %>
+
+  <%= render 'layouts/facebook' %>

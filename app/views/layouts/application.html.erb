@@ -8,54 +8,11 @@
   <%= javascript_include_tag "http://js.pusher.com/2.1/pusher.min.js" %>
   <%= csrf_meta_tags %>
   <script type="text/javascript">
-  	var channel, pusher, playersOnline;
+  	var channel, pusher, numPlayersOnline, playersOnline;
+    playersOnline = [];
   </script>
 </head>
 <body data-controller="<%= controller_name %>" data-action="<%= action_name %>">
-
-    <script type="text/javascript">
-    Pusher.log = function(message) {
-      if (window.console && window.console.log) {
-        window.console.log(message);
-      }
-    };
-
-    //$(function() {
-	 	// Local
-    	//var pusher = new Pusher('af206ffe9c7f4e25ed4b');
-    	// Deployed
-    	pusher = new Pusher('e4b834d5db454fadd385');
-	 	
-	 	channel = pusher.subscribe('presence_test_channel');
-	    channel.bind('update_players', function(data) {
-	      $('#num-players-online').text(data.message);
-	      playersOnline = parseInt(data.message,10);
-	      console.log(playersOnline);
-        if(playersOnline >= 1) {
-          $('#start-game').show(); 	
-        } else if(playersOnline < 1) {
-          $('#start-game').hide();  
-        }
-      })
-
- 	    // Some useful debug msgs
-	    pusher.connection.bind('connecting', function() {
-	      $('div#status').text('Connecting to Pusher...');
-	    });
-	    pusher.connection.bind('connected', function() {
-	      $('div#status').text('Connected to Pusher!');
-	    });
-	    pusher.connection.bind('failed', function() {
-	      $('div#status').text('Connection to Pusher failed :(');
-	    });
-	    channel.bind('subscription_error', function(status) {
-	      $('div#status').text('Pusher subscription_error');
-	    });   
-	     channel.bind('pusher:subscription_succeeded', function(members) {
-	     	console.log("HOW MANY PUSHERS")
-		})
-   // });
-  </script>
 
 
 

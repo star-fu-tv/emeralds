@@ -1,19 +1,24 @@
-<h1>Quizmaster#start</h1>
-<p>Find me in app/views/quizmaster/start.html.erb</p>
+<h1>Quizzard</h1>
 
-<%= render 'layouts/playersonline' %>
-<%= @current_question %>
+<h2 id="quizmaster-waiting">Waiting for players</h2>
+
 <%= form_tag("/quizmaster/question/1/", :method=>"post") do %>
   <%= submit_tag("Start Quiz", :class=>"btn", :id=>"start-game") %>
 <% end %>
 
-
+<%= render 'layouts/playersonline' %>
 
 <script type="text/javascript">
-		var playersOnline = <%= Player.all.size-1%>
-		console.log(playersOnline);
-		if(playersOnline < 1) {
-			$('#start-game').hide();
-			console.log("MORE PLAY")
-		}
+	var np = parseInt($('span#num-players-online').text(), 10);
+
+	if(np < 1) {
+		//console.log(numPlayersOnline)
+		$('#start-game').hide();
+		$('h2#quizmaster-waiting').show();
+	}
+
+	if(np > 1) {
+
+	}
+	showOnlinePlayers();		
 </script>

@@ -1,12 +1,77 @@
+<Script type="text/javascript">
+    Pusher.log = function(message) {
+      if (window.console && window.console.log) {
+        window.console.log(message);
+      }
+    };
+pusher = new Pusher('e4b834d5db454fadd385');			// setup pusher
+channel = pusher.subscribe('presence_test_channel');	// channel: logged in players
 
-
-<div id="players-online">
-<h2>Players Online: <span id="num-players-online"><%= Player.all.size-1 %></span></h2>
-	<ul>
-
-	<li>
-		
-	</li>
+channel.bind('update_players', function(data) {			// fired when player logs in/out
+	numPlayersOnline = parseInt(data.online,10);
+	$('#num-players-online').text(numPlayersOnline);
+	console.log("update players num online: " + numPlayersOnline)
 	
+	if(data.action == 'delete') {	
+		console.log('delete player');
+		$("ul#players-online-list #"+data.image).remove();
+		$.each(playersOnline, function(i)
+		{	
+			console.log(data.name)
+			if(playersOnline[i].name == data.name) {
+				playersOnline[i].online = false;
+			}
+		});		
+		$('#players-online-list').empty();	
+		//showOnlinePlayers();						
+	}
+	if(data.action == 'create') {
+		$('#num-players-online').text(numPlayersOnline);
+		console.log(numPlayersOnline +'argh')
+		playersOnline.push({name: data.name, image: data.image, online: true});
+		showOnlinePlayers();	
+	}
+    
+	if(numPlayersOnline >= 1) {
+		$('#start-game').show(); 	
+		
+	} else if(numPlayersOnline < 1) {
+		$('#start-game').hide();  
+		
+	}
+})
+
+showOnlinePlayers = function() {
+	var list = $('#players-online-list');
+	console.log(playersOnline.length)
+	list.empty();
+	$.each(playersOnline, function(i)
+	{	
+		if(playersOnline[i].online == true) {
+		var s =
+		"<li id='"+playersOnline[i].image+"''><img src='"+playersOnline[i].image+"' class='players-online-item'><br><h4>"+playersOnline[i].name+"</h4></li>";
+		list.append(s);
+		}
+		console.log(playersOnline[i].name + playersOnline[i].online)
+	});
+}   
+
+	pusher.connection.bind('connecting', function() {
+	      
+	      //showOnlinePlayers();
+	if(numPlayersOnline >= 1) {
+		$('#start-game').show(); 	
+		
+	} else if(numPlayersOnline < 1) {
+		$('#start-game').hide();  
+		
+	}	      
+
+    });
+
+</script>
+<div id="players-online">
+	<h2 id="some-players-online">Players Online: <span id="num-players-online"><%= Player.all.size-1 %></span></h2>
+	<ul id="players-online-list">	
 	</ul>
 </div>

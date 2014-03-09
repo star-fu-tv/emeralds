@@ -1,20 +1,4 @@
-<div id="player-widget">
-  <% if current_player %>
-My score: <%= current_player.points %>
-  	<div id="status"></div>
-    Welcome <strong><%= current_player.name %></strong>! <%= current_player.id %><br>
-    <%= link_to image_tag current_player.image %>
-    <%= link_to "Sign out", signout_path, id: "sign_out" %>
-  <% else %>
-    <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
-    <a href="auth/facebook">SIGN IN PROPERLY</a>
-  <% end %>
-  
-</div>
-
-
 <div class="question">
-
 
 <% q1 = @questions.find(params[:id]) %><br>
 
@@ -22,11 +6,11 @@ My score: <%= current_player.points %>
 
 <% q1_array.shuffle! %>
 
-<% 4.times do |i| %>
+<h3 class="question-text"><%= q1.question_text %></h3>
 
-	<% 
-		next_q = Integer(params[:id]) + 1
-		next_q_link = "/quiz/question/" + next_q.to_s 
+<% 4.times do |i| 
+	next_q = Integer(params[:id]) + 1
+	next_q_link = "/quiz/question/" + next_q.to_s 
 	
 	if q1_array[i] == q1.correct_a then %>
 
