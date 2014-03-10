@@ -6,7 +6,7 @@ class QuizController < ApplicationController
     # CHECK IF DESKTOP OR MOBILE
       browser = request.env['HTTP_USER_AGENT']  
       user_agent = UserAgent.parse(browser) 
-      if user_agent.mobile? == false then
+      if user_agent.browser == 'Chrome' then
          redirect_to :controller => '/quizmaster', :action => 'start'
       elsif current_player
         redirect_to :controller => '/quiz', :action => 'waiting'
