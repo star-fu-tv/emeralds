@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
     player = Player.from_omniauth(env["omniauth.auth"])
     session[:player_id] = player.id
     Pusher['presence_test_channel'].trigger('update_players', {
-      online: Player.all.size,
+      online: Player.all.size - 1,
       image: player.image,
       name: player.name,
       action: 'create'
@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
     Player.find(session[:player_id]).destroy
     session[:player_id] = nil
     Pusher['presence_test_channel'].trigger('update_players', {
-      online: Player.all.size,
+      online: Player.all.size - 1,
       action: 'delete'
     })    
     redirect_to root_url

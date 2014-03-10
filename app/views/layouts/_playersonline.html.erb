@@ -36,7 +36,7 @@ channel.bind('update_players', function(data) {			// fired when player logs in/o
 		$('h2#quizmaster-waiting').hide();
 		
 	} else if(numPlayersOnline < 1) {
-		$('#start-game').hide();  
+		//$('#start-game').hide();  
 		
 	}
 })
@@ -64,7 +64,7 @@ showOnlinePlayers = function() {
 		$('h2#quizmaster-waiting').hide();	
 		
 	} else if(numPlayersOnline < 1) {
-		$('#start-game').hide();  
+		//$('#start-game').hide();  
 		
 	}	      
 
@@ -72,7 +72,7 @@ showOnlinePlayers = function() {
 
 </script>
 <div id="players-online">
-	<h2 id="some-players-online"><span id="num-players-online"><%= Player.all %></span> Players</h2>
+	<h2 id="some-players-online"><span id="num-players-online"><%= Player.all.size-1 %></span> Players</h2>
 	<ul id="players-online-list">	
 	</ul>
 </div>
