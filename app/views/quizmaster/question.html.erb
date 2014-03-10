@@ -1,9 +1,55 @@
-<h1>Quizmaster#question</h1>
+<div id="col-sm-12">
+<h1>~ Quizzard ~</h1>
 
 <% @questions = Question.all %>
 
-  <%= render 'layouts/question' %><br>and..<%= params[:id]%>
-  
-  <%= render 'layouts/playersonline' %>
+  <%= render 'layouts/question' %><br>
+<% if params[:id].to_i == 5 then %>
+	<%= form_tag("/quizmaster/end", :id=>"next-question-qm-go", :method=>"post") do %>
+	  	<%= submit_tag("Next Question", :class=>"btn", :class=>"next-question-quizmaster") %>	
+	<% end %>
 
-  <%= render 'layouts/facebook' %>
+<% else %>
+
+	<% next_q_no = params[:id].to_i + 1 %>
+	<%= form_tag("/quizmaster/question/" << next_q_no.to_s, :id=>"next-question-qm-go", :method=>"post") do%>
+  	<%= submit_tag("Next Question", :class=>"btn", :class=>"next-question-quizmaster") %>	
+  	<% end %>
+<% end %>
+
+
+<%
+@players = Player.all
+@players.each do |player| %>
+
+	<% unless player.name == "quizmaster" %>
+	<div class="player-score" id="<%= player.image %>">
+		<%= image_tag(player.image, :class=>"pull-left", :id=>"avatar") %>
+		<div>
+			<h4 class="player-score-h4"><%= player.name %> <br>: <%= player.points %> points</h4><br>
+		</div>
+	</div>
+	<% end %>
+
+<% end %>
+</div>
+<script type="text/javascript">
+    Pusher.log = function(message) {
+      if (window.console && window.console.log) {
+        window.console.log(message);
+      }
+    };
+    var numAnswered = 0;
+	pusher = new Pusher('e4b834d5db454fadd385');
+	channel = pusher.subscribe('answered');
+	channel.bind('answered_question', function(data) {		
+		$('#next-question-qm-go').submit();
+	})
+
+	$('.answer-button').click(function(e) {
+		e.preventDefault();
+		console.log("preventDefault")
+	})
+
+	
+</script>

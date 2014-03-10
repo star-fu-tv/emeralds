@@ -27,7 +27,7 @@ GEM
       tzinfo (~> 0.3.37)
     arel (4.0.2)
     atomic (1.1.15)
-    bootstrap-sass (2.3.2.0)
+    bootstrap-sass (3.1.1.0)
       sass (~> 3.2)
     browser (0.4.1)
     builder (3.1.4)
@@ -172,7 +172,7 @@ GEM
       polyglot (>= 0.3.1)
     turbolinks (1.1.1)
       coffee-rails
-    tzinfo (0.3.38)
+    tzinfo (0.3.39)
     uglifier (2.1.1)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
@@ -185,7 +185,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bootstrap-sass (= 2.3.2.0)
+  bootstrap-sass (= 3.1.1.0)
   browser
   capybara (= 2.1.0)
   coffee-rails (= 4.0.1)

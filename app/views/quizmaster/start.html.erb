@@ -1,7 +1,21 @@
-<h1>Quizzard</h1>
+<div class="jumbotron">
+	<h1 class="animated flipInX" id="quizmaster-title">~ Quizzard ~</h1>
+		<div class="row">
+			<div id="icons">
+			<a href="#" data-icon="&#xe000;"></a>
+			<span class="icon-lab"></span>
+			<span class="icon-rocket"></span>
+			<span class="icon-music"></span>
+			<span class="icon-droplet"></span>
+			<span class="icon-pacman"></span>
+		</div>
+	</div>
+</div>
 
 <h2 id="quizmaster-waiting">Waiting for players</h2>
+<!-- <marquee class="animated " id="start-banner"> -->
 
+<!-- </marquee> -->
 <%= form_tag("/quizmaster/question/1/", :method=>"post") do %>
   <%= submit_tag("Start Quiz", :class=>"btn", :id=>"start-game") %>
 <% end %>

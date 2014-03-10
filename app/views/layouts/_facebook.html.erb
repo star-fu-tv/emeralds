@@ -1,9 +1,8 @@
 <div id="facebook-widget">
   <% if current_player %>
 
-  	<div id="status"></div>
-    Welcome <strong><%= current_player.name %></strong>! <%= current_player.id %><br>
-    <%= link_to image_tag current_player.image %>
+    <%= image_tag(current_player.image, id: "avatar") %><br>
+    Hi <strong><%= current_player.name %></strong>!<br>
     <%= link_to "Sign out", signout_path, id: "sign_out" %>
     <% else %>
     <a href="auth/facebook" id="sign-in">Sign in with Facebook</a>

@@ -1,13 +1,13 @@
-<div class="question">
 
-<% q1 = @questions.find(params[:id]) %><br>
+<% q1 = @questions.find(params[:id]) %>
 
 <% q1_array = [q1.correct_a, q1.incorrect_a, q1.incorrect_b, q1.incorrect_c] %>
+<% colours = ['pink', 'yellow', 'green', 'blue'] %>
+<% colours.shuffle! %>
 
 <% q1_array.shuffle! %>
 
 <h3 class="question-text"><%= q1.question_text %></h3>
-
 <% 4.times do |i| 
 	next_q = Integer(params[:id]) + 1
 	next_q_link = "/quiz/question/" + next_q.to_s 
@@ -17,21 +17,20 @@
 	<%= form_tag("/quiz/correct/" + params[:id], :method=>"put") do %>
 
 	  <input id="question_number" name="q_number" type="checkbox" value="<%= params[:id] %>" />
-	  <%= submit_tag(q1_array[i], :class=>"btn", :id=>"correct-answer") %>
+	  <%= submit_tag(q1_array[i], :class=>"answer-button "+colours[i], :id=>"correct-answer") %>
 	<% end %>
 
 	<% else %>
 
+	<% if params[:id].to_i == 5 then
+		next_q_link = "/quiz/end/"
+		end %>
+
 	<%= form_tag(next_q_link, :method=>"post") do %>
-	  <%= submit_tag(q1_array[i], :class=>"btn", :id=>"incorrect-answer") %>
+	  <%= submit_tag(q1_array[i], :class=>"answer-button "+colours[i], :id=>"incorrect-answer") %>
 	<% end %>
 
 	<% end %>
 
 <% i+= 1 %>
 <% end %>
-
-
-
-
-</div>

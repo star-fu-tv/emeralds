@@ -1,6 +1,98 @@
 // Place all the styles related to the Quizmaster controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "compass";
+
+
+/* QUIZMASTER */
+#icons {
+	width: 40%;
+	color: white;
+	font-size: 40px;
+	height:80px;
+	padding:8px;
+	margin:8px;
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	span{
+		padding:8px;
+	}
+}
+h1#quizmaster-title {
+	font-size: 90px;
+	padding: 1em;
+	color: white;
+	  text-shadow: 0 1px 0 #ccc,
+               0 2px 0 #c9c9c9,
+               0 3px 0 #bbb,
+               0 4px 0 #b9b9b9,
+               0 5px 0 #aaa,
+               0 6px 1px rgba(0,0,0,.1),
+               0 0 5px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 10px rgba(0,0,0,.25),
+               0 10px 10px rgba(0,0,0,.2),
+               0 20px 20px rgba(0,0,0,.15);
+               font-family: 'Sunshiney', cursive;
+}
+h1 {
+	font-size: 72px;
+	color: white;	
+	padding: 10px;
+	font-family: 'Sunshiney', cursive;
+}
+h3.question-text {
+	font-family: 'Autour One', cursive;
+}
+h5 {
+
+}
+.jumbotron {
+	background: rgba(255,255,255,0.3);
+	border-radius: 20px;
+	text-align: center;
+	height: 40%;
+	margin: 10px;
+}
+.answer-button {
+	font-family: 'Autour One', cursive;
+	background: rgb(240,240,240);
+	padding: 8px;
+	margin: 10px;
+}
+
+
+input#start-game {
+    background-color:#4b3f39;
+    font-size:28px;
+    text-decoration:none;
+    color:#fff;
+    position:relative;
+    padding:10px 20px;
+    
+    background-image: linear-gradient(bottom, rgb(62,51,46) 0%, rgb(101,86,78) 100%);
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: inset 0px 1px 0px rgb(62,51,46), 0px 5px 0px 0px rgb(101,86,78), 0px 10px 5px #999;	
+}
+
+h2#quizmaster-waiting{
+	display: none;
+}
+
+input#question_number {
+	opacity: 0;
+	height:0px;
+	width:0px;
+	padding:0;
+	margin:0;
+	position: absolute;
+	top:0px;
+	right: 0px;
+}
 
 #start-game {
 	//display: none;
@@ -8,4 +100,53 @@
 
 .transparent-next {
 	//opacity: 0;
+}
+
+body.quizmaster {
+	width: 100%;
+	height: 100%;
+	background-attachment: fixed;
+	@include background-image(linear-gradient(top, #5471FF 0%,#54FCFF 100%));
+	background: -moz-linear-gradient(90deg, rgb(53, 147, 255) 30%, rgb(114, 217, 255) 86%);
+	background: -webkit-linear-gradient(90deg, rgb(53, 147, 255) 30%, rgb(114, 217, 255) 86%);
+	background: -o-linear-gradient(90deg, rgb(53, 147, 255) 30%, rgb(114, 217, 255) 86%);
+	background: -ms-linear-gradient(90deg, rgb(53, 147, 255) 30%, rgb(114, 217, 255) 86%);
+	background: linear-gradient(180deg, rgb(53, 147, 255) 30%, rgb(114, 217, 255) 86%);
+	
+}
+
+$pink : rgb(255,133,168);
+$yellow : rgb(255,243,133);
+$green : rgb(133,205,208);
+$blue : rgb(132,201,255); 
+
+.pink {
+	border: 6px solid $pink;
+	border-radius: 6px;
+}
+.yellow {
+	border: 6px solid $yellow;
+	border-radius: 6px;
+}
+.green {
+	border: 6px solid $green;
+	border-radius: 6px;
+}
+.blue {
+	border: 6px solid $blue;
+	border-radius: 6px;
+}
+
+#next-question-qm-go{
+	opacity: 0;
+}
+
+.player-score {
+	width: 260px;
+}
+.player-score-h4 {
+	text-align: left;
+	padding-left:60px;
+	position:relative;
+	top:4px;
 }

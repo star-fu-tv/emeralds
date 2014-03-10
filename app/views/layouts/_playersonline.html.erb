@@ -22,8 +22,7 @@ channel.bind('update_players', function(data) {			// fired when player logs in/o
 				playersOnline[i].online = false;
 			}
 		});		
-		$('#players-online-list').empty();	
-		//showOnlinePlayers();						
+		$('#players-online-list').empty();							
 	}
 	if(data.action == 'create') {
 		$('#num-players-online').text(numPlayersOnline);
@@ -34,6 +33,7 @@ channel.bind('update_players', function(data) {			// fired when player logs in/o
     
 	if(numPlayersOnline >= 1) {
 		$('#start-game').show(); 	
+		$('h2#quizmaster-waiting').hide();
 		
 	} else if(numPlayersOnline < 1) {
 		$('#start-game').hide();  
@@ -60,7 +60,8 @@ showOnlinePlayers = function() {
 	      
 	      //showOnlinePlayers();
 	if(numPlayersOnline >= 1) {
-		$('#start-game').show(); 	
+		$('#start-game').show(); 
+		$('h2#quizmaster-waiting').hide();	
 		
 	} else if(numPlayersOnline < 1) {
 		$('#start-game').hide();  
@@ -71,7 +72,7 @@ showOnlinePlayers = function() {
 
 </script>
 <div id="players-online">
-	<h2 id="some-players-online">Players Online: <span id="num-players-online"><%= Player.all.size-1 %></span></h2>
+	<h2 id="some-players-online"><span id="num-players-online"><%= Player.all.size-1 %></span> Players</h2>
 	<ul id="players-online-list">	
 	</ul>
 </div>

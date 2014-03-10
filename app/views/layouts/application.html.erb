@@ -12,12 +12,12 @@
     playersOnline = [];
   </script>
 </head>
-<body data-controller="<%= controller_name %>" data-action="<%= action_name %>">
+<body data-controller="<%= controller_name %>" data-action="<%= action_name %>" class="<%= controller_name %>">
 
-
-
-
-<%= yield %>
-
+<div class="container">
+  <div class="row">
+  <%= yield %>
+  </div>
+</div>
 </body>
 </html>

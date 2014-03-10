@@ -28,8 +28,13 @@ class QuizController < ApplicationController
     end
   end
 
-  def start
-
+  def incorrect
+    if current_player && Integer(params[:id]) < 4 then
+      next_question_id = Integer(params[:id]) + 1
+      redirect_to "/quiz/question/" + next_question_id.to_s
+    else 
+      redirect_to "/quiz/end"   
+    end
   end
 
   def join
@@ -43,13 +48,10 @@ class QuizController < ApplicationController
 
   end
 
-  
-
-
   def question
        Pusher['answered'].trigger('answered_question', {
        question: params[:id],
-       user: current_player.uid
+       user: current_player.name
      }) 
   end
 

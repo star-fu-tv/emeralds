@@ -9,13 +9,49 @@ h1 {
 	text-align:center;
 }
 
-h2#quizmaster-waiting{
-	display: none;
+h1#mobile-header {
+	font-size:48px;
+	padding:10px;
+	margin: 0;
 }
-
+h2#mobile-h2 {
+	font-size: 24px;
+	padding: 6px;
+	margin: 0;
+}
 body {
-	@include background-image(linear-gradient(top, #f0f9ff 0%,#ccffcc 67%,#a1dbff 100%));
+	@include background-image(linear-gradient(top, #5471FF 0%,#ccffcc 67%,#54FCFF 100%));
 	@include background-image(linear-gradient(top, #f0f9ff 0%,#f4d1ff 14%,#a1f9fc 21%,#f4d1ff 30%,#f4d1ff 30%,#a1f9fc 41%,#ffec63 59%,#825ee5 59%,#825ee5 59%,#825ee5 63%,#1b4284 100%));
 	background: url(gray_jean.png);
 	text-align: center;
+}
+
+.container {
+	width: 90%;
+}
+
+input#start-game::before 
+
+/* QUIZ */
+#some-players-online {
+	font-size: 20px;
+}
+#go-to-q1-form {
+	opacity: 0;
+	input {
+		height: 1px;
+		width: 1px;
+		padding: 0;
+		margin: 0;
+	}
+}
+
+#avatar {
+	border-radius: 50px;
+}
+
+input.answer-button {
+	width: 300px;
+	height: 60px;
+	padding:0;
 }
