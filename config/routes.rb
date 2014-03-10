@@ -14,6 +14,7 @@ Emeralds::Application.routes.draw do
   match 'quizmaster/start', to: 'quizmaster#start', via: [:get, :post]
   match 'quizmaster/end', to: 'quizmaster#end', via: [:get, :post]
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
+  match 'quiz/auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
   match 'auth/failure', to: redirect('/'), via: [:get, :post]
   match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
   get "quizmaster/start"
