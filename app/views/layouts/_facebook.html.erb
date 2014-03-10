@@ -1,5 +1,5 @@
 <div id="facebook-widget">
-  <% if current_player %>
+  <% if current_player.name != 'quizmaster' %>
 
     <%= image_tag(current_player.image, id: "avatar") %><br>
     Hi <strong><%= current_player.name %></strong>!<br>

@@ -102,7 +102,7 @@ input#question_number {
 	//opacity: 0;
 }
 
-body.quizmaster {
+body.quizmaster-start {
 	width: 100%;
 	height: 100%;
 	background-attachment: fixed;
@@ -112,9 +112,10 @@ body.quizmaster {
 	background: -o-linear-gradient(90deg, rgb(53, 147, 255) 30%, rgb(114, 217, 255) 86%);
 	background: -ms-linear-gradient(90deg, rgb(53, 147, 255) 30%, rgb(114, 217, 255) 86%);
 	background: linear-gradient(180deg, rgb(53, 147, 255) 30%, rgb(114, 217, 255) 86%);
-	
 }
-
+body.quizmaster-question {
+	background: url(gray_jean.png);
+}
 $pink : rgb(255,133,168);
 $yellow : rgb(255,243,133);
 $green : rgb(133,205,208);
